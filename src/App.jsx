@@ -56,18 +56,27 @@ const retryableCode = `public static async Task<bool> ExecuteWithRetryAsync(
     return false;
 }`
 
-function event(step, kind, request, response) {
-  return {
-    time: new Date().toLocaleTimeString(),
-    step,
-    kind,
-    request,
-    response,
+function createEventBuilder() {
+  const base = Date.now()
+  let seq = 0
+
+  return function build(step, kind, request, response) {
+    seq += 1
+    const t = new Date(base + seq * 900) // mỗi step lệch 900ms cho dễ nhìn
+    return {
+      order: seq,
+      time: `${t.toLocaleTimeString()}.${String(t.getMilliseconds()).padStart(3, '0')}`,
+      step,
+      kind,
+      request,
+      response,
+    }
   }
 }
 
 function simulatePivotDemo() {
   const events = []
+  const event = createEventBuilder()
 
   events.push(event('CreateOrder', 'ExecuteRequest', { action: 'POST /orders' }))
   events.push(event('CreateOrder', 'ExecuteResponse', null, { ok: true, status: 201 }))
@@ -92,6 +101,7 @@ function simulatePivotDemo() {
 
 function simulateRetryableDemo() {
   const events = []
+  const event = createEventBuilder()
 
   events.push(event('CreateOrder', 'ExecuteRequest', { action: 'POST /orders' }))
   events.push(event('CreateOrder', 'ExecuteResponse', null, { ok: true, status: 201 }))
@@ -140,6 +150,7 @@ function App() {
           <table>
             <thead>
               <tr>
+                <th>STT</th>
                 <th>Time</th>
                 <th>Step</th>
                 <th>Kind</th>
@@ -150,6 +161,7 @@ function App() {
             <tbody>
               {result.events.map((e, idx) => (
                 <tr key={idx}>
+                  <td>{e.order}</td>
                   <td>{e.time}</td>
                   <td>{e.step}</td>
                   <td>{e.kind}</td>
