@@ -1,16 +1,32 @@
-# React + Vite
+# Saga Orchestration Pivot + Retryable Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Live UI
+UI demo step-by-step orchestration with request/response timeline:
+- Pivot transaction flow
+- Retryable transaction flow (retry + exponential backoff)
 
-Currently, two official plugins are available:
+## Run frontend locally
+```bash
+npm install
+npm run dev
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Build frontend
+```bash
+npm run build
+```
 
-## React Compiler
+## C# runnable demo code
+Folder: `csharp-demo/`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Run:
+```bash
+cd csharp-demo
+dotnet run
+```
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Contains:
+- `PivotSagaDemo.cs` (pivot transaction and forward recovery concept)
+- `RetryableSagaDemo.cs` (retryable transaction with retry/backoff)
+- `Program.cs` (entry point)
+- `csharp-demo.csproj`
