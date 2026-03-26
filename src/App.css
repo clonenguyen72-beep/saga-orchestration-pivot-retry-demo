@@ -1,51 +1,83 @@
+:root {
+  --bg: #f3f6fb;
+  --text: #0f172a;
+  --muted: #475569;
+  --panel: #ffffff;
+  --border: #dbe2ea;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+}
+
 body {
   margin: 0;
   font-family: Inter, Arial, sans-serif;
-  background: #0b1020;
-  color: #f8fafc;
+  background: var(--bg);
+  color: var(--text);
 }
 
 .page {
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 28px 20px 40px;
 }
 
-h1 { margin-bottom: 6px; }
-.subtitle { color: #cbd5e1; margin-top: 0; }
+h1 {
+  margin: 0 0 6px;
+  font-size: 2rem;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-top: 0;
+  font-size: 1rem;
+}
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin: 18px 0;
 }
 
 button {
-  background: #2563eb;
+  background: var(--primary);
   border: none;
-  color: white;
-  padding: 10px 14px;
-  border-radius: 8px;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
   cursor: pointer;
+  font-weight: 600;
 }
 
-button:hover { background: #1d4ed8; }
+button:hover {
+  background: var(--primary-hover);
+}
 
 .panel {
-  background: #111827;
-  border: 1px solid #334155;
-  border-radius: 12px;
-  padding: 14px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
   margin-bottom: 14px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+.panel h2 {
+  margin: 0 0 10px;
 }
 
 pre {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
-  background: #0f172a;
+  background: #0b1220;
+  color: #e2e8f0;
   padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #334155;
+  border-radius: 10px;
+  border: 1px solid #1e293b;
+  max-height: 360px;
+  overflow: auto;
+  line-height: 1.45;
+  font-size: 13px;
 }
 
 table {
@@ -53,13 +85,29 @@ table {
   border-collapse: collapse;
   margin-top: 10px;
   font-size: 14px;
+  background: #fff;
 }
 
-th, td {
-  border: 1px solid #334155;
-  padding: 8px;
+th,
+td {
+  border: 1px solid var(--border);
+  padding: 10px;
   vertical-align: top;
   text-align: left;
+  word-break: break-word;
 }
 
-th { background: #1e293b; }
+th {
+  background: #eaf1fb;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+tbody tr:nth-child(even) {
+  background: #f9fbff;
+}
+
+tbody tr:hover {
+  background: #eef4ff;
+}
