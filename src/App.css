@@ -69,11 +69,11 @@ button:hover {
 pre {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
-  background: #0b1220;
-  color: #e2e8f0;
+  background: #f8fafc;
+  color: #0f172a;
   padding: 12px;
   border-radius: 10px;
-  border: 1px solid #1e293b;
+  border: 1px solid var(--border);
   max-height: 360px;
   overflow: auto;
   line-height: 1.45;
